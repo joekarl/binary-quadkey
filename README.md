@@ -123,6 +123,8 @@ to UTF-8 string such as Java, Go, or Python 3, Javascript
 * Space wasted for zoom levels < 8
 * Languages with no 64bit integers cannot be represented natively (ie Javascript, well, it's
 kindof supported but not really...)
+* Lose disk locality if storing information via quadkey (nearby quadkeys are no longer nearby on
+disk)
 
 ## Uses
 
