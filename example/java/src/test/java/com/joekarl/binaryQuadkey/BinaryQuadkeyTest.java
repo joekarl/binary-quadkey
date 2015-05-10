@@ -6,6 +6,37 @@ import org.junit.Test;
 public class BinaryQuadkeyTest {
 
     @Test
+    public void createsFromTileXYCorrectly() {
+        long expectedBinaryQuadkey = 0b0010110101100100000000000000000000000000000000000000000000000111L;
+        int x = 29, y = 50, zoomLevel = 7;
+        long result = BinaryQuadkey.fromTileXY(x, y, zoomLevel);
+        System.out.println(Long.toBinaryString(expectedBinaryQuadkey));
+        System.out.println(Long.toBinaryString(result));
+        Assert.assertEquals(expectedBinaryQuadkey, result);
+    }
+
+    @Test
+    public void createsFromTileXYCorrectly2() {
+        long expectedBinaryQuadkey = BinaryQuadkey.fromString("1202102332221212");
+        int x = 35210, y = 21493, zoomLevel = 16;
+        long result = BinaryQuadkey.fromTileXY(x, y, zoomLevel);
+        System.out.println(Long.toBinaryString(expectedBinaryQuadkey));
+        System.out.println(Long.toBinaryString(result));
+        Assert.assertEquals(expectedBinaryQuadkey, result);
+    }
+
+    @Test
+    public void createsFromLonLatCorrectly() {
+        long expectedBinaryQuadkey = BinaryQuadkey.fromString("02123022310022332");
+        double lon = -122.676537, lat = 45.523007;
+        int zoomLevel = 17;
+        long result = BinaryQuadkey.fromLonLat(lon, lat, zoomLevel);
+        System.out.println(Long.toBinaryString(expectedBinaryQuadkey));
+        System.out.println(Long.toBinaryString(result));
+        Assert.assertEquals(expectedBinaryQuadkey, result);
+    }
+
+    @Test
     public void parsesQuadkeyString() {
         long expectedBinaryQuadkey = 0b0010010011100001110010011011001000000000000000000000000000010000L;
         String quadkey = "0210320130212302";

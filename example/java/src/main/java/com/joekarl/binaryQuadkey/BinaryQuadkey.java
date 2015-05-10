@@ -28,6 +28,42 @@ public class BinaryQuadkey {
             0b1111111111111111111111111111111111111111111111000000000000000000L
     };
 
+
+    public static long fromTileXY(int x, int y, int zoomLevel) {
+        long binaryQuadkey = 0L;
+        for (int i = zoomLevel; i > 0; --i) {
+            int mask = 1 << (i - 1);
+            long bitLocation = (64 - ((zoomLevel - i + 1) * 2) + 1);
+            if ((x & mask) != 0) {
+                binaryQuadkey |= 0b1L << (bitLocation - 1);
+            }
+            if ((y & mask) != 0) {
+                binaryQuadkey |= 0b1L << bitLocation;
+            }
+        }
+        binaryQuadkey |= (long)zoomLevel;
+        return binaryQuadkey;
+    }
+
+    // via http://wiki.openstreetmap.org/wiki/Slippy_map_tilenames#Java
+    public static long fromLonLat(double lon, double lat, int zoomLevel) {
+        int xtile = (int) Math.floor( (lon + 180) / 360 * (1 << zoomLevel) ) ;
+        int ytile = (int) Math.floor( (1 - Math.log(Math.tan(Math.toRadians(lat)) + 1 / Math.cos(Math.toRadians(lat))) / Math.PI) / 2 * (1 << zoomLevel) ) ;
+        if (xtile < 0) {
+            xtile = 0;
+        }
+        if (xtile >= (1 << zoomLevel)) {
+            xtile = ((1 << zoomLevel) - 1);
+        }
+        if (ytile < 0) {
+            ytile = 0;
+        }
+        if (ytile >= (1 << zoomLevel)) {
+            ytile = ((1 << zoomLevel) - 1);
+        }
+        return fromTileXY(xtile, ytile, zoomLevel);
+    }
+
     public static long fromString(String qkString) {
         long zoomLevel = qkString.length();
         long binaryQuadkey = 0L;
