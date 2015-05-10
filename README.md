@@ -112,19 +112,21 @@ for i = 0; i <= zoom_level; i++ {
 * Comparisons can be made in constant time O(1) vs linear time O(n) for string quadkeys
 * Faster iteration of a list of quadkeys due to simple array storage and cache optimizations
 * Better indexing support in databases for integers vs strings
-* Most applications use UTF-8 instead of ASCII encoding which can result in 2x-4x more space
-savings than what is listed in the space comparison section (due to chars being 2 bytes or
-4 bytes in UTF-8 or other encodings) **Note** also applicable to languages that default to UTF-8
-string such as Java, Go, or Python 3
+* Most applications use UTF-8 instead of ASCII encoding which can result in 2x-4x more bloat
+for string quadkeys than what is listed in the space comparison section (due to chars being 2
+bytes or 4 bytes in UTF-8 or other encodings) **Note** also applicable to languages that default
+to UTF-8 string such as Java, Go, or Python 3, Javascript
 
 ## Cons vs string quadkeys
 
 * More complicated
 * Space wasted for zoom levels < 8
-* Languages with no 64bit integers cannot be represented natively (ie Javascript)
+* Languages with no 64bit integers cannot be represented natively (ie Javascript, well, it's
+kindof supported but not really...)
 
 ## Uses
 
 * Storage or transmission of large amounts of high zoom level quadkeys (ie individual locations
   or a set of quadkeys representing a geometric area at high zoom level)
-* Comparison of large amounts of quadkeys
+* Speedy comparison of large amounts of quadkeys
+* Speedy iteration of large numbers of quadkeys
