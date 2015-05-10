@@ -88,7 +88,7 @@ For same zoom level quadkeys, a simple integer comparison can be done `qkA ==  q
 
 To check to see if a quadkey (`qkA`) is contained by another quadkey (`qkB`)
 * Extract the zoom level via bitmask `qkBZoomLevel = qkB & 0b11111`
-* Convert both quadkeys to prefix `qkPrefixA = qkA >> qkBZoomLevel` `qkPrefixB = qkB >> qkBZoomLevel`
+* Convert both quadkeys to prefix `qkPrefixA = qkA >> 64 - qkBZoomLevel` `qkPrefixB = qkB >> 64  - qkBZoomLevel`
 * Compare the prefixes `qkPrefixA == qkPrefixB`
 
 ## Binary quadkey to string quadkey
