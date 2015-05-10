@@ -63,10 +63,10 @@ binary quadkey space = 64 bits
 
 Assumes sizeof(char) == 1, for other char encodings muliply string size by sizeof(char)
 
-* The largest string quadkey (zoom level 23) will take up 23 * 8 bits = 184 bits
+* The largest string quadkey (zoom level 23) will take up 23 x 8 bits = 184 bits
 * The largest binary quadkey will take up 64 bits
 * The largest binary quadkey in decimal is the number `18446744073709289495` which even as a
-string is only 20 * 8 bits = 160 bits (though in practice a string version of a binary quadkey
+string is only 20 x 8 bits = 160 bits (though in practice a string version of a binary quadkey
 would not be transferred or stored)
 
 * 500 zoom level 15 string quadkeys = 500 x 15 x 8 bits = 7.5 kb
