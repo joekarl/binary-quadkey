@@ -33,7 +33,7 @@ A binary quadkey should be encoded as follows:
 quadkey '03120312'
 binary quadkey 0b0011011000110110 0000000000000000000000000000000000000000000 01000
                 |                |                                           |
-                | quadkey bits   |                  undefined bits           | zoom level
+                | quadkey bits   |                  undefined bits           | zoom level 8
 
 normal quadkey space = 64 bits (sizeof(char) == 1)
 binary quadkey space = 64 bits
@@ -41,9 +41,9 @@ binary quadkey space = 64 bits
 
 ```
 quadkey '02'
-binary quadkey 0b0010 0000000000000000000000000000000000000000000000000000000 01000
+binary quadkey 0b0010 0000000000000000000000000000000000000000000000000000000 00010
                 |    |                                                       |
-                |    |                        undefined bits                 | zoom level
+                |    |                        undefined bits                 | zoom level 2
 
 normal quadkey space = 16 bits (sizeof(char) == 1)
 binary quadkey space = 64 bits
@@ -53,7 +53,7 @@ binary quadkey space = 64 bits
 quadkey '0210320130212302'
 binary quadkey 0b00100100111000011100100110110010 000000000000000000000000000 10000
                 |                                |                           |
-                |           quadkey bits         |       undefined bits      | zoom level
+                |           quadkey bits         |       undefined bits      | zoom level 16
 
 normal quadkey space = 128 bits (sizeof(char) == 1)
 binary quadkey space = 64 bits
